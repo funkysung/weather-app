@@ -20,6 +20,10 @@ def getWeather(canvas):
     final_data = "\n" + "Max: " + str(max_temp) + "°C\n" + "Min: " + str(min_temp) + "°C\n" + "Pressure: " + str(pressure) + "hPa\n" + "Humidity: " + str(humidity) + "%\n" + "Wind Speed: " + str(wind) + "m/s\n" + "Sunrise: " + sunrise + "\n" + "Sunset: " + sunset
     label1.config(text = final_info)
     label2.config(text = final_data)
+
+def clear_textfield(event):
+    if textfield.get() == "Type city name":
+        textfield.delete(0, tk.END)
     
 canvas = tk.Tk()
 canvas.geometry("600x500")
@@ -32,6 +36,8 @@ textfield = tk.Entry(canvas, font = t)
 textfield.pack(pady = 20)
 textfield.focus()
 textfield.bind('<Return>', getWeather)
+textfield.insert(0, "Type city name")
+textfield.bind("<Key>", clear_textfield)
 
 label1 = tk.Label(canvas, font = t)
 label1.pack()
